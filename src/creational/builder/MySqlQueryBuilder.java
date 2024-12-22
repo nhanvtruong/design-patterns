@@ -2,10 +2,11 @@ package creational.builder;
 
 public class MySqlQueryBuilder implements SqlQueryBuilder {
 
-  private StringBuilder query;
+  private static StringBuilder query;
 
-  public MySqlQueryBuilder() {
+  public static MySqlQueryBuilder build() {
     query = new StringBuilder();
+    return new MySqlQueryBuilder();
   }
 
   @Override
