@@ -7,6 +7,7 @@ public class DesignPattern {
   public static void main(String[] args) {
 
     Logistics roadLogistic = new RoadLogistic();
+    roadLogistic.createTransport();
     roadLogistic.deliver();
     Logistics seaLogistic = new SeaLogistic();
     seaLogistic.deliver();
