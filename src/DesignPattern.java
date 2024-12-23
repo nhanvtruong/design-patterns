@@ -1,38 +1,23 @@
-import behaviour.obsever.AccountEventManager;
-import behaviour.obsever.BankAccount;
-import behaviour.obsever.EmailAccountEventSubscriber;
-import behaviour.obsever.EventType;
-import behaviour.obsever.MobileAppAccountEventSubscriber;
-import behaviour.obsever.SMSAccountEventSubscriber;
+import creational.singleton.GlobalCounter;
 
 public class DesignPattern {
 
   public static void main(String[] args) {
 
-    BankAccount bankAccount = new BankAccount(
-        "USER123",
-        "091234565",
-        "user@gmail.com",
-        12345667
-    );
+    Thread t1 = new Thread(() -> {
+      GlobalCounter globalCounter = GlobalCounter.getInstance();
+      globalCounter.increment();
+      System.out.println("Counter value : " +globalCounter.getCounter());
+    });
 
-    EmailAccountEventSubscriber emailSubscriber = new EmailAccountEventSubscriber(
-        bankAccount.getEmail());
-    SMSAccountEventSubscriber smsSubscriber = new SMSAccountEventSubscriber(
-        bankAccount.getPhoneNo());
-    MobileAppAccountEventSubscriber mobileSubscriber = new MobileAppAccountEventSubscriber(
-        bankAccount.getPhoneNo());
+    Thread t2 = new Thread(() -> {
+      GlobalCounter globalCounter = GlobalCounter.getInstance();
+      globalCounter.increment();
+      System.out.println("Counter value : " +globalCounter.getCounter());
+    });
 
-    AccountEventManager accountEventManager = bankAccount.getAccountEventManager();
-    accountEventManager.addSubscriber(EventType.CREDIT, emailSubscriber);
-    accountEventManager.addSubscriber(EventType.CREDIT, smsSubscriber);
-    accountEventManager.addSubscriber(EventType.DEBIT, mobileSubscriber);
-
-    bankAccount.deposit(100.0);
-    bankAccount.withdraw(20.0);
-
-    accountEventManager.removeSubscriber(EventType.CREDIT, smsSubscriber);
-    bankAccount.deposit(200.0);
+    t1.start();
+    t2.start();
 
   }
 

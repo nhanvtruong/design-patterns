@@ -2,15 +2,14 @@ package creational.singleton;
 
 public class GlobalCounter {
 
-  private static GlobalCounter instance;
-
   private int counter = 0;
 
+  private static final class InstanceHolder {
+    private static final GlobalCounter instance = new GlobalCounter();
+  }
+
   public static GlobalCounter getInstance() {
-    if (instance == null) {
-      instance = new GlobalCounter();
-    }
-    return instance;
+    return InstanceHolder.instance;
   }
 
   private GlobalCounter() {
