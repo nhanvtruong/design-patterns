@@ -12,17 +12,17 @@ public class Customer {
 
   private OrderMeal orderMeal;
 
+  public void makeOrder(OrderMeal order) {
+    log.info("Ok let me look into the menu");
+    orderMeal = order;
+  }
+
   public String getName() {
     return name;
   }
 
   public Customer(String name) {
     this.name = name;
-  }
-
-  public void makeOrder(OrderMeal order) {
-    log.info("Ok let me look into the menu");
-    orderMeal = order;
   }
 
   public Meal haveMeal() {
