@@ -4,9 +4,8 @@ public class MySqlQueryBuilder implements SqlQueryBuilder {
 
   private static StringBuilder query;
 
-  public static MySqlQueryBuilder build() {
+  public MySqlQueryBuilder() {
     query = new StringBuilder();
-    return new MySqlQueryBuilder();
   }
 
   @Override
