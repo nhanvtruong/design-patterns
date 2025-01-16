@@ -38,13 +38,13 @@ public class Box implements PaidProduct {
     return products;
   }
 
-  public void removeProduct(PaidProduct product) {
+  public void removeComponent(PaidProduct product) {
     if (product != null) {
       products.remove(product);
     }
   }
 
-  public void addProduct(PaidProduct product) {
+  public void addComponent(PaidProduct product) {
     if (product != null) {
       products.add(product);
     }
